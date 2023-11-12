@@ -47,6 +47,14 @@ summary {
   display: inline-block;
 }
 
+.view {
+  display: none;
+}
+
+.active-view {
+  display: block;
+}
+
 header,
 footer {
   background-color: #ebebeb;

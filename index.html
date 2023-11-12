@@ -1,3 +1,4 @@
+<!-- Styles and HTML brought over from Assignment 1 -->
 <html>
   <header>
     <meta charset="utf-8" />
@@ -19,54 +20,71 @@
   </header>
 
   <body>
+    <!-- Include external JS files and funtions-->
+    <script src="./files/database.js"></script>
+    <script src="./files/functions.js"></script>
+    <script src="./files/playlist.js"></script>
+    <script src="./files/search.js"></script>
+    <script src="./files/song.js"></script>
+
+    <script>
+      //bring music data over from API into storage and prepare it for website usage
+      const musicTable = getMusicData();
+    </script>
+
+    <header>
+      <h2 align="center">COMP3512 Kirill Penkov</h2>
+    </header>
     <a href="https://github.com/kpenkov98/f2023-assign2.git">GitHub Repo</a>
     <br />
     <a href="https://kpenkov98.github.io/f2023-assign2/">GitHub Pages</a>
 
+    <!-- Nav Bar with View Selection -->
     <nav class="navbar">
       <ul class="navbar-list">
         <li class="navbar-item">
-          <a class="navbar-link" href="">Home</a>
+          <a class="navbar-link" onclick="changeViews('search')" href="#"
+            >Search & Browse</a
+          >
         </li>
         <li class="navbar-item">
-          <a class="navbar-link" href="">Search</a>
+          <a class="navbar-link" onclick="changeViews('song')" href="#"
+            >Song Details</a
+          >
         </li>
         <li class="navbar-item">
-          <a class="navbar-link" href="">Browse</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="">Favourite List</a>
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" href="">About Us</a>
+          <a class="navbar-link" onclick="changeViews('playlist')" href="#"
+            >Playlist</a
+          >
         </li>
       </ul>
     </nav>
 
-    <script>
-      const pages = {
-        search: `
-              
-        `,
+    <!-- View Search/Browse -->
+    <div id="search" class="view active-view">
+      <h2>Search & Browse Music</h2>
+    </div>
 
-        browse: `
-        `,
+    <!-- View Song Details -->
+    <div id="song" class="view">
+      <h2>Song Details</h2>
+    </div>
 
-        song: ` 
-        
-        `,
-      };
-    </script>
+    <!-- View Playlist-->
+    <div id="playlist" class="view">
+      <h2>Playlist</h2>
+    </div>
 
-    <footer><h5>COMP3512 Assignment 1</h5>
-    <h5>&copy Kirill Penkov</h5>
-    <a
-      class="button button-primary"
-      href="https://github.com/kpenkov98/f2023-assign1.git"
-      type="button"
-      target="_blank"
-      ><h5>Github Repo</h5></a
-    >
-  </footer>
+    <footer>
+      <h5>COMP3512 Assignment 2</h5>
+      <h5>&copy Kirill Penkov</h5>
+      <a
+        class="button button-primary"
+        href="https://github.com/kpenkov98/f2023-assign2.git"
+        type="button"
+        target="_blank"
+        ><h5>Github Repo</h5></a
+      >
+    </footer>
   </body>
 </html>
