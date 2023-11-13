@@ -34,7 +34,7 @@
       console.log(musicTable);
     </script>
 
-    <header class="conatiner">
+    <header class="row">
       <h2 align="center">COMP3512 Kirill Penkov</h2>
       <a class="button" href="https://github.com/kpenkov98/f2023-assign2.git"
         >GitHub Repo</a
@@ -46,7 +46,7 @@
     </header>
 
     <!-- Nav Bar with View Selection -->
-    <nav class="navbar">
+    <nav class="navbar row">
       <ul class="navbar-list">
         <li class="navbar-item">
           <a class="navbar-link" onclick="changeViews('search')" href="#"
@@ -67,73 +67,71 @@
     </nav>
 
     <!-- View Search/Browse -->
-    <div id="search" class="view active-view container">
+    <div id="search" class="view active-view">
       <h1>Search & Browse Music</h1>
       <h2>List of Songs</h2>
-      
-      <div class="container"><ul id="songList"></ul></div>
 
-      <table class="u-full-width container">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Year</th>
-            <th>Genre</th>
-            <th>Popularity</th>
-            <th>Add To Playlist</th>
-          </tr>
-        </thead>
-        <tbody id="songTable">
-        </tbody>
-      </table>
+      <div class="row">
+        <div class="three columns">
+          <form action="#" method="get">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Enter title"
+              value=""
+            />
 
+            <!-- Artist prepopulation into options -->
+            <label for="artist">Artist</label>
+            <select id="artistName" name="artist">
+              <option value="">Select an Artist</option>
+            </select>
 
-      
-      <div class="container">
-      <form action="#" method="get">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Enter title"
-          value=""
-        />
-        
-        <!-- Artist prepopulation into options -->
-        <label for="artist">Artist</label>
-        <select id="artistName" name="artist">
-          <option value="">Select an Artist</option>
+            <!-- Year -->
+            <label for="year">Year</label>
+            <input type="text" id="year" name="year" placeholder="Enter year" />
 
-        </select>
+            <!-- Genre prepopulation into options -->
+            <label for="genre">Genre</label>
+            <select id="genreName" name="genre">
+              <option value="">Select an Artist</option>
+            </select>
 
-        <!-- Year -->
-        <label for="year">Year</label>
-        <input type="text" id="year" name="year" placeholder="Enter year" />
+            <input type="submit" value="Search" />
+          </form>
+        </div>
 
-        <!-- Genre prepopulation into options -->
-        <label for="genre">Genre</label>
-        <select id="genreName" name="genre">
-          <option value="">Select an Artist</option>
-        </select>
-
-        <input type="submit" value="Search" />
-      </form>
-
-      <script>
-        populateSelect(musicTable);
-        displaySongs(musicTable);
-      </script>
+        <div class="eight columns scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Popularity</th>
+                <th>Add To Playlist</th>
+              </tr>
+            </thead>
+            <tbody id="songTable"></tbody>
+          </table>
+        </div>
       </div>
     </div>
+    <script>
+      populateSelect(musicTable);
+      displaySongs(musicTable);
+    </script>
+
     <!-- View Song Details -->
-    <div id="song" class="view">
+    <div id="song" class="view row">
       <h1>Song Details</h1>
     </div>
 
     <!-- View Playlist-->
-    <div id="playlist" class="view">
+    <div id="playlist" class="view row">
       <h1>Playlist</h1>
     </div>
 

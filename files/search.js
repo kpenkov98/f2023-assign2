@@ -24,7 +24,7 @@ function displaySongs(musicTable) {
     const popularity = document.createElement("td");
     popularity.textContent = song.details.popularity;
 
-    const addToFav = document.createElement("a");
+    const addToFav = document.createElement("td");
     addToFav.textContent = "Add";
 
     row.appendChild(title);

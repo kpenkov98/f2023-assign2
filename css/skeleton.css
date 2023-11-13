@@ -49,6 +49,13 @@
   }
 }
 
+.scroll{
+  
+  overflow-y: scroll;
+
+}
+
+
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
@@ -448,8 +455,9 @@ pre > code {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
 td {
-  padding: 12px 15px;
+  padding: 12px 5px;
   text-align: left;
+  vertical-align: center;
   border-bottom: 1px solid #e1e1e1;
 }
 th:first-child,
