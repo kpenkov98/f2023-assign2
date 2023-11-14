@@ -11,7 +11,7 @@ function getMusicData() {
 
 async function fetchData() {
   const api =
-    "http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php";
+    "https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php";
 
   try {
     const response = await fetch(api);

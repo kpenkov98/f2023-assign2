@@ -49,12 +49,10 @@
   }
 }
 
-.scroll{
-  
-  overflow-y: scroll;
-
+.scroll {
+  height: 50%;
+  overflow-y: auto;
 }
-
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
@@ -557,8 +555,8 @@ ___________________________________________________*/
 .floating-button {
   position: fixed;
   bottom: 20px;
-  right: 20px; 
-  background-color: #007BFF;
+  right: 20px;
+  background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
