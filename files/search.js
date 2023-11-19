@@ -9,8 +9,13 @@ function displaySongs(musicTable) {
   musicTable.forEach((song) => {
     const row = document.createElement("tr");
 
+    const songId = document.createElement("td");
+    songId.textContent = song.song_id;
+    songId.setAttribute("style", "display: none;");
+
     const title = document.createElement("td");
     title.textContent = song.title;
+    //title.setAttribute("")
 
     const artist = document.createElement("td");
     artist.textContent = song.artist.name;
@@ -27,6 +32,7 @@ function displaySongs(musicTable) {
     const addToFav = document.createElement("td");
     addToFav.textContent = "Add";
 
+    row.appendChild(songId);
     row.appendChild(title);
     row.appendChild(artist);
     row.appendChild(year);
