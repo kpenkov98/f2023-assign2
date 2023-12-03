@@ -89,8 +89,26 @@ function blurOptions(clicked) {
   }
 }
 
+
+function search(radioButton, searchButton) {
+
+  const title = document.getElementById("titleSearch");
+  const artist = document.getElementById("artistSearch");
+  const year = document.getElementById("yearSearch");
+  const genre = document.getElementById("genreSearch");
+
+}
+
 //function that searches for titles
-function searchTitle() {}
+function searchTitle(title) {
+
+
+const searchTable = musicTable.find(song => song.title == title);
+return searchTable;
+
+
+
+}
 
 //function that searches for artists
 function searchArtist() {}

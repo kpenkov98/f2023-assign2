@@ -84,7 +84,7 @@
               />
               <input
                 type="text"
-                id="title"
+                id="titleText"
                 name="title"
                 placeholder="Enter title"
                 value=""
@@ -105,23 +105,6 @@
               </select>
             </div>
 
-            <!-- Year -->
-            <div id="yearSearch">
-              <label for="year">Year</label>
-              <input
-                type="radio"
-                name="searchRadio"
-                onclick="blurOptions('yearSearch');"
-                id="yearRadio"
-              />
-              <input
-                type="text"
-                id="year"
-                name="year"
-                placeholder="Enter year"
-              />
-            </div>
-
             <!-- Genre prepopulation into options -->
             <div id="genreSearch">
               <label for="genre">Genre</label>
@@ -131,12 +114,18 @@
                 onclick="blurOptions('genreSearch');"
                 id="genreRadio"
               />
-              <select id="genreName" name="genre">
+              <select id="genreName" name="genre" onclick="">
                 <option value="">Select an Artist</option>
               </select>
             </div>
 
-            <input type="submit" value="Search" />
+            <input
+              type="submit"
+              value="Search"
+              id="searchBox"
+              onclick="search()"
+            />
+            <input type="submit" name="Clear" id="clearSearch" onclick="clear()"/>
           </form>
         </div>
 
