@@ -28,8 +28,12 @@
     <script src="./files/song.js"></script>
 
     <script>
-      //bring music data over from API into storage and prepare it for website usage
+      //disable input for the page until a radio box is selected
+      document.addEventListener("DOMContentLoaded", function () {
+        disableInput();
+      });
 
+      //bring music data over from API into storage and prepare it for website usage
       const musicTable = getMusicData();
       console.log(musicTable);
     </script>
@@ -114,28 +118,32 @@
                 onclick="blurOptions('genreSearch');"
                 id="genreRadio"
               />
-              <select id="genreName" name="genre" onclick="">
+              <select id="genreName" name="genre">
                 <option value="">Select an Artist</option>
               </select>
             </div>
 
-            <input
-              type="submit"
-              value="Search"
-              id="searchBox"
-              onclick="search()"
-            />
-            <input
-              type="submit"
-              name="Clear"
-              id="clearSearch"
-              onclick="clear()"
-            />
+            <div>
+              <input
+                class="button button-primary"
+                type="submit"
+                value="Search"
+                id="searchBox"
+                onclick="search(musicTable)"
+              />
+              <input
+                class="button"
+                type="reset"
+                name="Clear"
+                id="clearSearch"
+                onclick="reset()"
+              />
+            </div>
           </form>
         </div>
 
         <div class="eight columns scroll">
-          <table>
+          <table id="notFound">
             <thead>
               <tr>
                 <th style="display: none">Song ID</th>

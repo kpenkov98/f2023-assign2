@@ -58,6 +58,7 @@ function displaySongs(musicTable) {
 
     const addToFav = document.createElement("td");
     addToFav.textContent = "Add";
+    addToFav.classList.add("button","button-primary");
 
     row.appendChild(songId);
     row.appendChild(title);

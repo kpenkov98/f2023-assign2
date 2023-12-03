@@ -20,12 +20,18 @@ function populateSelect(musicTable) {
   genreSelect.innerHTML = "";
 
   //populate artist and genre drop down
+  const emptyOption = document.createElement("option");
+  artistSelect.appendChild(emptyOption);
+
   uniqueArtists.forEach((artist) => {
     //artist
     const artistOption = document.createElement("option");
     artistOption.textContent = artist;
     artistSelect.appendChild(artistOption);
   });
+
+  const emptyGenreOption = document.createElement("option");
+  genreSelect.appendChild(emptyGenreOption);
 
   uniqueGenres.forEach((genre) => {
     //genres
@@ -59,41 +65,79 @@ function songTitleClick(e) {
   console.log(selectedSong.title);
 }
 
-//function to blur other options when radio button is selected
+//function to disable input until a radio button is clicked
+function disableInput() {
+  const titleDisabledInput = document.querySelector("#titleText");
+  const artistDisabledInput = document.querySelector("#artistName");
+  const genreDisabledInput = document.querySelector("#genreName");
+
+    titleDisabledInput.style.pointerEvents = "none";
+    artistDisabledInput.style.pointerEvents = "none";
+    genreDisabledInput.style.pointerEvents = "none";
+}
+
+//function to blur and isolate other options when radio button is selected
 function blurOptions(clicked) {
-  const title = document.getElementById("titleSearch");
-  const artist = document.getElementById("artistSearch");
-  const genre = document.getElementById("genreSearch");
+  const title = document.querySelector("#titleSearch");
+  const artist = document.querySelector("#artistSearch");
+  const genre = document.querySelector("#genreSearch");
+  const titleDisabledInput = document.querySelector("#titleText");
+  const artistDisabledInput = document.querySelector("#artistName");
+  const genreDisabledInput = document.querySelector("#genreName");
 
   if (clicked === "titleSearch") {
     artist.style.filter = "blur(2px)";
     genre.style.filter = "blur(2px)";
     title.style.filter = "";
+    //title isolator and blur for other options
+    titleDisabledInput.style.pointerEvents = "auto";
+    artistDisabledInput.style.pointerEvents = "none";
+    genreDisabledInput.style.pointerEvents = "none";
   } else if (clicked === "artistSearch") {
     title.style.filter = "blur(2px)";
     genre.style.filter = "blur(2px)";
     artist.style.filter = "";
+    //artist isolator and blur for other options
+    titleDisabledInput.style.pointerEvents = "none";
+    artistDisabledInput.style.pointerEvents = "auto";
+    genreDisabledInput.style.pointerEvents = "none";
   } else if (clicked === "genreSearch") {
     artist.style.filter = "blur(2px)";
     title.style.filter = "blur(2px)";
     genre.style.filter = "";
+    //genre isolator and blur for other options
+    titleDisabledInput.style.pointerEvents = "none";
+    artistDisabledInput.style.pointerEvents = "none";
+    genreDisabledInput.style.pointerEvents = "auto";
   }
 }
 
-function search(radioButton, searchButton) {
-  const title = document.getElementById("titleSearch");
-  const artist = document.getElementById("artistSearch");
-  const genre = document.getElementById("genreSearch");
+function search(songList) {
+  const title = document.querySelector("#titleText").value;
+  const artist = document.querySelector("#artistName").value;
+  const genre = document.querySelector("#genreName").value;
+  let searchTable = [];
+
+  if (title == "" && artist == "" && genre == "") {
+    document.querySelector(".eight").innerHTML =
+      "No Songs Found, Please Ajust Your Search";
+    return;
+  } else if (title !== "") {
+    searchTable = songList.filter((song) => song.title == title);
+    console.log("title is here");
+  } else if (artist !== "") {
+    searchTable = songList.filter((song) => song.artist.name == artist);
+    console.log("artist is here");
+  } else if (genre !== "") {
+    searchTable = songList.filter((song) => song.genre.name == genre);
+    console.log("genre is here");
+  }
+
+  if (searchTable.length === 0) {
+    document.querySelector(".eight").innerHTML =
+      "No Songs Found, Please Ajust Your Search";
+    return;
+  }
+  console.log(searchTable);
+  displaySongs(searchTable);
 }
-
-//function that searches for titles
-function searchTitle(title) {
-  const searchTable = musicTable.find((song) => song.title == title);
-  return searchTable;
-}
-
-//function that searches for artists
-function searchArtist() {}
-
-//function that searches for genres
-function searchGenre() {}
