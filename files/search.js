@@ -63,51 +63,33 @@ function songTitleClick(e) {
 function blurOptions(clicked) {
   const title = document.getElementById("titleSearch");
   const artist = document.getElementById("artistSearch");
-  const year = document.getElementById("yearSearch");
   const genre = document.getElementById("genreSearch");
 
   if (clicked === "titleSearch") {
     artist.style.filter = "blur(2px)";
-    year.style.filter = "blur(2px)";
     genre.style.filter = "blur(2px)";
-    title.style.filter = '';
+    title.style.filter = "";
   } else if (clicked === "artistSearch") {
     title.style.filter = "blur(2px)";
-    year.style.filter = "blur(2px)";
     genre.style.filter = "blur(2px)";
-    artist.style.filter = '';
-  } else if (clicked === "yearSearch") {
-    artist.style.filter = "blur(2px)";
-    title.style.filter = "blur(2px)";
-    genre.style.filter = "blur(2px)";
-    year.style.filter = '';
+    artist.style.filter = "";
   } else if (clicked === "genreSearch") {
     artist.style.filter = "blur(2px)";
-    year.style.filter = "blur(2px)";
     title.style.filter = "blur(2px)";
-    genre.style.filter = '';
+    genre.style.filter = "";
   }
 }
 
-
 function search(radioButton, searchButton) {
-
   const title = document.getElementById("titleSearch");
   const artist = document.getElementById("artistSearch");
-  const year = document.getElementById("yearSearch");
   const genre = document.getElementById("genreSearch");
-
 }
 
 //function that searches for titles
 function searchTitle(title) {
-
-
-const searchTable = musicTable.find(song => song.title == title);
-return searchTable;
-
-
-
+  const searchTable = musicTable.find((song) => song.title == title);
+  return searchTable;
 }
 
 //function that searches for artists
@@ -115,6 +97,3 @@ function searchArtist() {}
 
 //function that searches for genres
 function searchGenre() {}
-
-//function that selects years
-function searchYear() {}
