@@ -1,12 +1,17 @@
 function getMusicData() {
-
-//check if localstorage has no data and add the data
+  //check if localstorage has no data and add the data
   if (localStorage.length === 0 || !localStorage.getItem("musicData")) {
     fetchData();
   }
   //data already exists
   storedData = JSON.parse(localStorage.getItem("musicData"));
-  return storedData;
+
+  //sort by title
+  const sortedData = storedData.sort((a, b) => {
+    return a.title < b.title ? -1 : 1;
+  });
+
+  return sortedData;
 }
 
 async function fetchData() {
@@ -28,4 +33,3 @@ async function fetchData() {
     console.error("Error fetching data", error);
   }
 }
-

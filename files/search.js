@@ -1,50 +1,5 @@
 //this file is for code related to view 1 (Search/Browse)
 
-//diplay songs on the search/browse page
-function displaySongs(musicTable) {
-
-  const table = document.querySelector("#songTable");
-
-  //create table to show the songs on the main page
-  musicTable.forEach((song) => {
-    const row = document.createElement("tr");
-
-    const songId = document.createElement("td");
-    songId.textContent = song.song_id;
-    songId.setAttribute("style", "display: none;");
-
-    const title = document.createElement("td");
-    title.textContent = song.title;
-    //title.setAttribute("")
-
-    const artist = document.createElement("td");
-    artist.textContent = song.artist.name;
-
-    const year = document.createElement("td");
-    year.textContent = song.year;
-
-    const genre = document.createElement("td");
-    genre.textContent = song.genre.name;
-
-    const popularity = document.createElement("td");
-    popularity.textContent = song.details.popularity;
-
-    const addToFav = document.createElement("td");
-    addToFav.textContent = "Add";
-
-    row.appendChild(songId);
-    row.appendChild(title);
-    row.appendChild(artist);
-    row.appendChild(year);
-    row.appendChild(genre);
-    row.appendChild(popularity);
-    row.appendChild(addToFav);
-    table.appendChild(row);
-  });
-}
-
-
-
 //funtion to prepopulate the artist and genre field
 function populateSelect(musicTable) {
   //sort and remove duplicate artists
@@ -101,4 +56,15 @@ function searchSong(searchBox) {
   } else {
     songDetails = song.find(searchBox);
   }
+}
+
+//react to a song title being clicked
+function songTitleClick(e) {
+  const row = e.target.parentNode;
+  const id = row.dataset.song;
+  const selectedSong = musicTable.find(
+    musicTable => musicTable.song_id == id
+  );
+
+  console.log(selectedSong.title);
 }
