@@ -73,31 +73,68 @@
 
       <div class="row">
         <div class="four columns">
-          <form action="#" method="get">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Enter title"
-              value=""
-            />
+          <form action="#" method="">
+            <div id="titleSearch">
+              <label for="title">Title</label>
+              <input
+                type="radio"
+                name="searchRadio"
+                onclick="blurOptions('titleSearch');"
+                id="titleRadio"
+              />
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter title"
+                value=""
+              />
+            </div>
 
             <!-- Artist prepopulation into options -->
-            <label for="artist">Artist</label>
-            <select id="artistName" name="artist">
-              <option value="">Select an Artist</option>
-            </select>
+            <div id="artistSearch">
+              <label for="artist">Artist</label>
+              <input
+                type="radio"
+                name="searchRadio"
+                onclick="blurOptions('artistSearch');"
+                id="artistRadio"
+              />
+              <select id="artistName" name="artist">
+                <option value="">Select an Artist</option>
+              </select>
+            </div>
 
             <!-- Year -->
-            <label for="year">Year</label>
-            <input type="text" id="year" name="year" placeholder="Enter year" />
+            <div id="yearSearch">
+              <label for="year">Year</label>
+              <input
+                type="radio"
+                name="searchRadio"
+                onclick="blurOptions('yearSearch');"
+                id="yearRadio"
+              />
+              <input
+                type="text"
+                id="year"
+                name="year"
+                placeholder="Enter year"
+              />
+            </div>
 
             <!-- Genre prepopulation into options -->
-            <label for="genre">Genre</label>
-            <select id="genreName" name="genre">
-              <option value="">Select an Artist</option>
-            </select>
+            <div id="genreSearch">
+              <label for="genre">Genre</label>
+              <input
+                type="radio"
+                name="searchRadio"
+                onclick="blurOptions('genreSearch');"
+                id="genreRadio"
+              />
+              <select id="genreName" name="genre">
+                <option value="">Select an Artist</option>
+              </select>
+            </div>
 
             <input type="submit" value="Search" />
           </form>
@@ -107,7 +144,7 @@
           <table>
             <thead>
               <tr>
-                <th style="display: none;">Song ID</th>
+                <th style="display: none">Song ID</th>
                 <th>Title</th>
                 <th>Artist</th>
                 <th>Year</th>
