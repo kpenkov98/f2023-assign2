@@ -105,27 +105,27 @@ function search(songList) {
   const title = document.querySelector("#titleText").value.trim().toLowerCase();
   const artist = document.querySelector("#artistName").value;
   const genre = document.querySelector("#genreName").value;
-  
+
   let searchTable = [];
 
   if (title == "" && artist == "" && genre == "") {
     document.querySelector(".eight").innerHTML =
       "No Songs Found, Please Ajust Your Search";
   } else if (title !== "") {
-    searchTable = songList.filter((song) => song.title.toLowerCase().includes(title));
-
+    searchTable = songList.filter((song) =>
+      song.title.toLowerCase().includes(title)
+    );
   } else if (artist !== "") {
     searchTable = songList.filter((song) => song.artist.name === artist);
-
   } else if (genre !== "") {
     searchTable = songList.filter((song) => song.genre.name === genre);
-
   }
 
   if (searchTable.length === 0) {
     document.querySelector(".eight").innerHTML =
       "No Songs Found, Please Ajust Your Search";
   }
-  console.log(searchTable)
-  displaySongs(searchTable);
+
+  console.log(searchTable);
+  return displaySongs(searchTable);
 }

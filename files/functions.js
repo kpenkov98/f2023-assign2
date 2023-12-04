@@ -13,11 +13,11 @@ function changeViews(viewId) {
 //diplay songs
 function displaySongs(musicTable) {
   const table = document.querySelector("#songTable");
-
+ 
   //create table to show the songs
+  
   musicTable.forEach((song) => {
     const row = document.createElement("tr");
-
 
     const songId = document.createElement("td");
     songId.textContent = song.song_id;

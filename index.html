@@ -31,10 +31,17 @@
       //disable input for the page until a radio box is selected
       document.addEventListener("DOMContentLoaded", function () {
         disableInput();
+
+        //prevent submit button from refreshing the page and messing up the table
+        const buttonBehavior = document.querySelector("#searchForm");
+        buttonBehavior.addEventListener("submit", function (e) {
+          e.preventDefault();
+        });
       });
 
       //bring music data over from API into storage and prepare it for website usage
-      let musicTable = initializeMusicTable();
+      let table;
+      let musicTable = initializeMusicTable(table);
 
       //initializes the musicTable if its missing and only allows it to be initialized once
       function initializeMusicTable(existingTable) {
@@ -48,7 +55,6 @@
         if (reset === true) {
           musicTable = getMusicData();
         }
-        return musicTable;
       }
     </script>
 
@@ -91,7 +97,7 @@
 
       <div class="row">
         <div class="four columns">
-          <form action="#" method="">
+          <form id="searchForm">
             <div id="titleSearch">
               <label for="title">Title</label>
               <input
