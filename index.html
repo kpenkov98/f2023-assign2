@@ -34,8 +34,22 @@
       });
 
       //bring music data over from API into storage and prepare it for website usage
-      const musicTable = getMusicData();
-      console.log(musicTable);
+      let musicTable = initializeMusicTable();
+
+      //initializes the musicTable if its missing and only allows it to be initialized once
+      function initializeMusicTable(existingTable) {
+        if (!existingTable) {
+          return getMusicData();
+        }
+        return existingTable;
+      }
+      //reset the musicTable once reset button has been used
+      function resetMusicTable(reset) {
+        if (reset === true) {
+          musicTable = getMusicData();
+        }
+        return musicTable;
+      }
     </script>
 
     <header class="row">
@@ -122,7 +136,7 @@
                 <option value="">Select an Artist</option>
               </select>
             </div>
-
+            <!--Buttons Submit and Reset for Form Reset-->
             <div>
               <input
                 class="button button-primary"
@@ -136,14 +150,14 @@
                 type="reset"
                 name="Clear"
                 id="clearSearch"
-                onclick="reset()"
+                onclick="resetMusicTable(true)"
               />
             </div>
           </form>
         </div>
-
+        <!--Song Table-->
         <div class="eight columns scroll">
-          <table id="notFound">
+          <table>
             <thead>
               <tr>
                 <th style="display: none">Song ID</th>
@@ -168,6 +182,7 @@
     <!-- View Song Details -->
     <div id="song" class="view row">
       <h1>Song Details</h1>
+      <ul></ul>
     </div>
 
     <!-- View Playlist-->

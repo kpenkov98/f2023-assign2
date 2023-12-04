@@ -38,11 +38,10 @@ function displaySongs(musicTable) {
     });
 
     //song details
-    title.dataset.song = song.song_id;
+    row.dataset.song = song.song_id;
     title.addEventListener("click", (e) => {
       songTitleClick(e, song, musicTable);
     });
-
 
     const artist = document.createElement("td");
     artist.textContent = song.artist.name;
