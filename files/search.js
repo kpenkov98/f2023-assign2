@@ -102,15 +102,24 @@ function blurOptions(clicked) {
 }
 
 function search(songList) {
+
+  //reset the form
+  resetMusicTable(true);
   const title = document.querySelector("#titleText").value.trim().toLowerCase();
   const artist = document.querySelector("#artistName").value;
   const genre = document.querySelector("#genreName").value;
 
+  //prewritten message if unable to find songs or no entry
+  const status = document.querySelector("#statusMessage");
+  status.textContent = "No Songs Found, Please Adjust Your Search"; 
+  status.style.display = "none";
+
   let searchTable = [];
 
   if (title == "" && artist == "" && genre == "") {
-    document.querySelector(".eight").innerHTML =
-      "No Songs Found, Please Ajust Your Search";
+    status.style.display = "";
+    document.querySelector("#tableHead").style.display = "none";
+    return;
   } else if (title !== "") {
     searchTable = songList.filter((song) =>
       song.title.toLowerCase().includes(title)
@@ -122,10 +131,12 @@ function search(songList) {
   }
 
   if (searchTable.length === 0) {
-    document.querySelector(".eight").innerHTML =
-      "No Songs Found, Please Ajust Your Search";
+    status.style.display = "";
+    document.querySelector("#tableHead").style.display = "none";
+    return;
   }
 
+  status.style.display = "none";
   console.log(searchTable);
-  return displaySongs(searchTable);
+  displaySongs(searchTable);
 }

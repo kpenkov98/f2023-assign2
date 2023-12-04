@@ -54,6 +54,11 @@
       function resetMusicTable(reset) {
         if (reset === true) {
           musicTable = getMusicData();
+          //clear any previois messages in DIV .eight
+          document.querySelector("#statusMessage").textContent = "";
+          //make the table visible from any previous searches
+          document.querySelector("#statusMessage").style.display ="none";
+          document.querySelector("#tableHead").style.display = "";
         }
       }
     </script>
@@ -163,7 +168,8 @@
         </div>
         <!--Song Table-->
         <div class="eight columns scroll">
-          <table>
+          <h3 id="statusMessage"></h3>
+          <table id="tableHead">
             <thead>
               <tr>
                 <th style="display: none">Song ID</th>
