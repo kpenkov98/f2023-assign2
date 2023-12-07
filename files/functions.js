@@ -1,3 +1,38 @@
+//disable input for the page until a radio box is selected
+document.addEventListener("DOMContentLoaded", function () {
+  disableInput();
+
+  //prevent submit button from refreshing the page and messing up the table
+  const buttonBehavior = document.querySelector("#searchForm");
+  buttonBehavior.addEventListener("submit", function (e) {
+    e.preventDefault();
+  });
+});
+
+//bring music data over from API into storage and prepare it for website usage
+let songsFromAPI = getMusicData();
+let musicTable = songsFromAPI;
+
+//function to remove data from music table and set search table to be shown isntead
+function showSearchTable(searchTable) {
+  
+  displaySongs(searchTable);
+}
+
+//reset the musicTable once reset button has been used
+function resetMusicTable(reset) {
+  if (reset === true) {
+    musicTable = getMusicData();
+    //clear any previous messages in DIV .eight
+    document.querySelector("#statusMessage").textContent = "";
+    //make the table visible from any previous searches
+    document.querySelector("#statusMessage").style.display = "none";
+    document.querySelector("#tableHead").style.display = "";
+    blurOptions();
+    return musicTable;
+  }
+}
+
 function changeViews(viewId) {
   //hides views
   const views = document.querySelectorAll(".view");
@@ -13,9 +48,9 @@ function changeViews(viewId) {
 //diplay songs
 function displaySongs(musicTable) {
   const table = document.querySelector("#songTable");
- 
+
   //create table to show the songs
-  
+
   musicTable.forEach((song) => {
     const row = document.createElement("tr");
 
@@ -25,7 +60,7 @@ function displaySongs(musicTable) {
 
     const title = document.createElement("td");
     title.textContent = song.title;
-    
+
     //title styling
     title.style.textDecoration = "underline";
     title.style.cursor = "pointer";
@@ -57,7 +92,11 @@ function displaySongs(musicTable) {
 
     const addToFav = document.createElement("td");
     addToFav.textContent = "Add";
-    addToFav.classList.add("button","button-primary");
+    addToFav.classList.add("button", "button-primary");
+    addToFav.addEventListener("click", function () {
+      playSnackBar();
+      addToPlaylist(song.song_id);
+    });
 
     row.appendChild(songId);
     row.appendChild(title);
@@ -69,3 +108,5 @@ function displaySongs(musicTable) {
     table.appendChild(row);
   });
 }
+
+function playSnackBar() {}

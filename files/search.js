@@ -1,14 +1,14 @@
 //this file is for code related to view 1 (Search/Browse)
 
 //funtion to prepopulate the artist and genre field
-function populateSelect(musicTable) {
+function populateSelect(songsFromAPI) {
   //sort and remove duplicate artists
-  const artistNames = musicTable.map((song) => song.artist.name);
+  const artistNames = songsFromAPI.map((song) => song.artist.name);
   const sortedArtistArray = artistNames.sort();
   const uniqueArtists = removeDuplicate(sortedArtistArray);
 
   //sort and remove duplicate genres
-  const genreNames = musicTable.map((song) => song.genre.name);
+  const genreNames = songsFromAPI.map((song) => song.genre.name);
   const sortedGenreArray = genreNames.sort();
   const uniqueGenres = removeDuplicate(sortedGenreArray);
 
@@ -54,12 +54,17 @@ function removeDuplicate(data) {
   return uniqueArray;
 }
 
-//function to disable input until a radio button is clicked
+//function to disable input until a radio button is clicked and undo blur
 function disableInput() {
   const titleDisabledInput = document.querySelector("#titleText");
   const artistDisabledInput = document.querySelector("#artistName");
   const genreDisabledInput = document.querySelector("#genreName");
-
+  const title = document.querySelector("#titleSearch");
+  const artist = document.querySelector("#artistSearch");
+  const genre = document.querySelector("#genreSearch");
+  artist.style.filter = "";
+  genre.style.filter = "";
+  title.style.filter = "";
   titleDisabledInput.style.pointerEvents = "none";
   artistDisabledInput.style.pointerEvents = "none";
   genreDisabledInput.style.pointerEvents = "none";
@@ -73,6 +78,12 @@ function blurOptions(clicked) {
   const titleDisabledInput = document.querySelector("#titleText");
   const artistDisabledInput = document.querySelector("#artistName");
   const genreDisabledInput = document.querySelector("#genreName");
+  artist.style.filter = "";
+  genre.style.filter = "";
+  title.style.filter = "";
+  titleDisabledInput.style.pointerEvents = "none";
+  artistDisabledInput.style.pointerEvents = "none";
+  genreDisabledInput.style.pointerEvents = "none";
 
   if (clicked === "titleSearch") {
     artist.style.filter = "blur(2px)";
@@ -102,16 +113,14 @@ function blurOptions(clicked) {
 }
 
 function search(songList) {
-
   //reset the form
-  resetMusicTable(true);
   const title = document.querySelector("#titleText").value.trim().toLowerCase();
   const artist = document.querySelector("#artistName").value;
   const genre = document.querySelector("#genreName").value;
 
   //prewritten message if unable to find songs or no entry
   const status = document.querySelector("#statusMessage");
-  status.textContent = "No Songs Found, Please Adjust Your Search"; 
+  status.textContent = "No Songs Found, Please Adjust Your Search";
   status.style.display = "none";
 
   let searchTable = [];
@@ -137,6 +146,10 @@ function search(songList) {
   }
 
   status.style.display = "none";
+
+  showSearchTable(searchTable);
+  //reset table after submit
+  document.querySelector("#searchForm").reset();
+  disableInput();
   console.log(searchTable);
-  displaySongs(searchTable);
 }

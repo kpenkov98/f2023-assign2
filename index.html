@@ -27,42 +27,6 @@
     <script src="./files/search.js"></script>
     <script src="./files/song.js"></script>
 
-    <script>
-      //disable input for the page until a radio box is selected
-      document.addEventListener("DOMContentLoaded", function () {
-        disableInput();
-
-        //prevent submit button from refreshing the page and messing up the table
-        const buttonBehavior = document.querySelector("#searchForm");
-        buttonBehavior.addEventListener("submit", function (e) {
-          e.preventDefault();
-        });
-      });
-
-      //bring music data over from API into storage and prepare it for website usage
-      let table;
-      let musicTable = initializeMusicTable(table);
-
-      //initializes the musicTable if its missing and only allows it to be initialized once
-      function initializeMusicTable(existingTable) {
-        if (!existingTable) {
-          return getMusicData();
-        }
-        return existingTable;
-      }
-      //reset the musicTable once reset button has been used
-      function resetMusicTable(reset) {
-        if (reset === true) {
-          musicTable = getMusicData();
-          //clear any previois messages in DIV .eight
-          document.querySelector("#statusMessage").textContent = "";
-          //make the table visible from any previous searches
-          document.querySelector("#statusMessage").style.display ="none";
-          document.querySelector("#tableHead").style.display = "";
-        }
-      }
-    </script>
-
     <header class="row">
       <h2 align="center">COMP3512 Kirill Penkov</h2>
       <a class="button" href="https://github.com/kpenkov98/f2023-assign2.git"
@@ -187,8 +151,7 @@
       </div>
     </div>
     <script>
-      populateSelect(musicTable);
-      displaySongs(musicTable);
+      populateSelect(songsFromAPI);
     </script>
 
     <!-- View Song Details -->
@@ -200,6 +163,31 @@
     <!-- View Playlist-->
     <div id="playlist" class="view row">
       <h1>Playlist</h1>
+      <div class="twelve columns scroll">
+        <h3 id="statusMessage"></h3>
+        <table id="tableHead">
+          <thead>
+            <tr>
+              <th style="display: none">Song ID</th>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Year</th>
+              <th>Genre</th>
+              <th>Popularity</th>
+              <th>Remove From Playlist</th>
+            </tr>
+          </thead>
+          <tbody id="playlistTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    //displaySongs(playlistTable);
+  </script>
+    
+
+
     </div>
 
     <footer>
