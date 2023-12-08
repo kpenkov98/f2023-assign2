@@ -21,7 +21,7 @@ function fetchData() {
     .then((resp) => resp.json())
     .then((songs) => {
       //add api data to localstorage
-      localStorage.setItem("musicData", JSON.stringify(data));
+      localStorage.setItem("musicData", JSON.stringify(songs));
     })
     .catch((error) => {
       console.error("Unable to Fetch Data ", error);
