@@ -14,22 +14,16 @@ function getMusicData() {
   return sortedData;
 }
 
-async function fetchData() {
+function fetchData() {
   const api =
     "https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php";
-
-  try {
-    const response = await fetch(api);
-
-    if (!response.ok) {
-      throw new Error("Website cannot be reached");
-    }
-
-    const data = await response.json();
-
-    //add api data to localstorage
-    localStorage.setItem("musicData", JSON.stringify(data));
-  } catch (error) {
-    console.error("Error fetching data", error);
-  }
+  fetch(api)
+    .then((resp) => resp.json())
+    .then((songs) => {
+      //add api data to localstorage
+      localStorage.setItem("musicData", JSON.stringify(data));
+    })
+    .catch((error) => {
+      console.error("Unable to Fetch Data ", error);
+    });
 }
