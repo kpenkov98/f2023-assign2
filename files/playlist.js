@@ -9,25 +9,27 @@ document.addEventListener("DOMContentLoaded", function () {
 //add to songIDs array
 function addToPlaylist(songid) {
   if (playlistArray.has(songid)) {
-    playSnackBar(3);
+    playSnackBar(2);
+  } else {
+    playSnackBar(1);
+    playlistArray.add(songid);
+    retrieveSongs();
   }
 
-  playlistArray.add(songid);
-  retrieveSongs();
 }
 //find and clear song based on its ID
 function clearSong(songid) {
   //find and remove songID
   playlistArray.delete(songid);
+  playSnackBar(3);
   retrieveSongs();
 }
 
 //clear the playlist completely
 function clearPlaylist() {
-  
-    console.log("clicked");
-    playlistArray.clear();
+  playlistArray.clear();
   retrieveSongs();
+  playSnackBar(4);
 }
 
 function playlistSongList(listofsongs) {
@@ -116,7 +118,7 @@ function displayPlaylist(addedSongs) {
     addToFav.classList.add("button", "button-primary", "buttonInTable");
     addToFav.addEventListener("click", function () {
       clearSong(song.song_id);
-      playSnackBar();
+      playSnackBar(2);
       retrieveSongs();
     });
 

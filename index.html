@@ -156,18 +156,26 @@
           </table>
         </div>
       </div>
+      <div id="snackbarSearch"></div>
     </div>
 
     <!-- View Song Details -->
     <div id="song" class="view row">
       <h1>Song Details</h1>
       <ul></ul>
+      <div id="snackbarSong"></div>
     </div>
 
     <!-- View Playlist-->
     <div id="playlist" class="view row">
       <h1>Playlist</h1>
-      <input onclick="clearPlaylist();" type="button" class="button button-primary" value="Clear Playlist" id="clearPlaylist">
+      <input
+        onclick="clearPlaylist();"
+        type="button"
+        class="button button-primary"
+        value="Clear Playlist"
+        id="clearPlaylist"
+      />
       <div class="twelve columns scroll">
         <h3 id="statusMessagePlaylist"></h3>
         <table id="playlistTH" align="center">
@@ -184,6 +192,7 @@
           </thead>
           <tbody id="playlistTable"></tbody>
         </table>
+        <div id="snackbarPlaylist"></div>
       </div>
     </div>
 

@@ -71,7 +71,6 @@ function displaySongs(musicTable) {
     addToFav.textContent = "Add";
     addToFav.classList.add("button", "button-primary", "buttonInTable");
     addToFav.addEventListener("click", function () {
-      playSnackBar();
       addToPlaylist(song.song_id);
     });
 
@@ -93,4 +92,40 @@ function clearTable() {
   }
 }
 
-function playSnackBar() {}
+function playSnackBar(snackBarID) {
+  const snackBar1 = "Song Added To PlayList";
+  const snackBar2 = "Song Already Exists In Playlist";
+  const snackBar3 = "Song Removed From Playlist";
+  const snackBar4 = "All Songs Have Been Removed From The Playlist";
+
+  const snackBarSearch = document.querySelector("#snackbarSearch");
+  const snackBarSong = document.querySelector("#snackbarSong");
+  const snackBarPlaylist = document.querySelector("#snackbarPlaylist");
+
+  //added to playlist
+  if (snackBarID === 1) {
+    runSnackBar(snackBarSearch, snackBar1);
+    runSnackBar(snackBarSong, snackBar1);
+  }
+  //already exists
+  if (snackBarID === 2) {
+    runSnackBar(snackBarSearch, snackBar2);
+    runSnackBar(snackBarSong, snackBar2);
+  }
+  //removed from playlist
+  if (snackBarID === 3) {
+    runSnackBar(snackBarPlaylist, snackBar3);
+  }
+  //everything removed from playlist
+  if (snackBarID === 4) {
+    runSnackBar(snackBarPlaylist, snackBar4);
+  }
+  //play snackbar when conditions are met
+  function runSnackBar(element, text) {
+    element.textContent = text;
+    element.className = "show";
+    setTimeout(function () {
+      element.className = element.className.replace("show", "");
+    }, 2950);
+  }
+}
