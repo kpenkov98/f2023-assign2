@@ -24,12 +24,6 @@ function changeViews(viewId) {
 
 //diplay songs
 function displaySongs(musicTable) {
-  // document.querySelector("#clearSearch").addEventListener("click", function () {
-  //   const table = document.querySelector("#songTable");
-  //   while (table.rows.length > 0) {
-  //     table.deleteRow(0);
-  //   }
-  // });
 
   const table = document.querySelector("#songTable");
   clearTable();

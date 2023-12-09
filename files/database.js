@@ -41,36 +41,39 @@ document.addEventListener("DOMContentLoaded", function () {
       return a.title < b.title ? -1 : 1;
     });
 
-    document.querySelector("#titleSort").addEventListener("click", function() {
+    document.querySelector("#titleSort").addEventListener("click", function () {
       sortedData = storedData.sort((a, b) => {
         return a.title < b.title ? -1 : 1;
       });
     });
-    document.querySelector("#artistSort").addEventListener("click", function() {
-      sortedData = storedData.sort((a, b) => {
-        return a.artist < b.artist ? -1 : 1;
+    document
+      .querySelector("#artistSort")
+      .addEventListener("click", function () {
+        sortedData = storedData.sort((a, b) => {
+          return a.artist < b.artist ? -1 : 1;
+        });
       });
-    });
-    document.querySelector("#yearSort").addEventListener("click", function() {
+    document.querySelector("#yearSort").addEventListener("click", function () {
       sortedData = storedData.sort((a, b) => {
         return a.year < b.year ? -1 : 1;
       });
     });
-    document.querySelector("#genreSort").addEventListener("click", function() {
+    document.querySelector("#genreSort").addEventListener("click", function () {
       sortedData = storedData.sort((a, b) => {
         return a.genre < b.genre ? -1 : 1;
       });
     });
-    document.querySelector("#popularitySort").addEventListener("click", function() {
-      sortedData = storedData.sort((a, b) => {
-        return a.popularity < b.popularity ? -1 : 1;
+    document
+      .querySelector("#popularitySort")
+      .addEventListener("click", function () {
+        sortedData = storedData.sort((a, b) => {
+          return a.popularity < b.popularity ? -1 : 1;
+        });
       });
-    }
-    );
-
 
     return sortedData;
   }
+
   function fetchData() {
     fetch(api)
       .then((resp) => resp.json())
@@ -89,4 +92,5 @@ document.addEventListener("DOMContentLoaded", function () {
   let songsFromAPI = getMusicData();
   search(songsFromAPI);
   populateSelect(songsFromAPI);
+  playlistSongList(songsFromAPI);
 });
