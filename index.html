@@ -1,8 +1,11 @@
 <!-- Styles and HTML brought over from Assignment 1 -->
 <html>
-  <script>
-    
-  </script>
+  <!-- Include external JS files and funtions-->
+  <script src="./files/database.js"></script>
+  <script src="./files/functions.js"></script>
+  <script src="./files/playlist.js"></script>
+  <script src="./files/search.js"></script>
+  <script src="./files/song.js"></script>
   <header>
     <meta charset="utf-8" />
     <title>Home Page</title>
@@ -23,13 +26,6 @@
   </header>
 
   <body class="container">
-    <!-- Include external JS files and funtions-->
-    <script src="./files/database.js"></script>
-    <script src="./files/functions.js"></script>
-    <script src="./files/playlist.js"></script>
-    <script src="./files/search.js"></script>
-    <script src="./files/song.js"></script>
-
     <header class="row">
       <h2 align="center">COMP3512 Kirill Penkov</h2>
       <a class="button" href="https://github.com/kpenkov98/f2023-assign2.git"
@@ -40,6 +36,10 @@
         >GitHub Pages</a
       >
     </header>
+
+    <script>
+      //bring music data over from API into storage and prepare it for website usage
+    </script>
 
     <!-- Nav Bar with View Selection -->
     <nav class="navbar row">
@@ -66,8 +66,13 @@
     <div id="search" class="view active-view">
       <h1>Search & Browse Music</h1>
       <h2>List of Songs</h2>
-
-      <div class="row">
+      <!-- Show Loading Screen -->
+      <div class="row" id="showWhileLoading">
+        <div class="twelve columns" id="spinner">
+          <div class="loader"></div>
+        </div>
+      </div>
+      <div class="row" id="hideWhileLoading">
         <div class="four columns">
           <form id="searchForm">
             <div id="titleSearch">
@@ -121,7 +126,6 @@
                 type="submit"
                 value="Search"
                 id="searchBox"
-                onclick="search(musicTable)"
               />
               <input
                 class="button"
@@ -153,9 +157,6 @@
         </div>
       </div>
     </div>
-    <script>
-      populateSelect(songsFromAPI);
-    </script>
 
     <!-- View Song Details -->
     <div id="song" class="view row">
@@ -183,14 +184,6 @@
           <tbody id="playlistTable"></tbody>
         </table>
       </div>
-    </div>
-  </div>
-  <script>
-    //displaySongs(playlistTable);
-  </script>
-    
-
-
     </div>
 
     <footer>

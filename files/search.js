@@ -111,45 +111,53 @@ function blurOptions(clicked) {
     genreDisabledInput.style.pointerEvents = "auto";
   }
 }
-
+//search function
 function search(songList) {
-  //reset the form
-  const title = document.querySelector("#titleText").value.trim().toLowerCase();
-  const artist = document.querySelector("#artistName").value;
-  const genre = document.querySelector("#genreName").value;
+  document.querySelector("#searchBox").addEventListener(
+    "click",
+    function () {
+      //reset the form
+      const title = document
+        .querySelector("#titleText")
+        .value.trim()
+        .toLowerCase();
+      const artist = document.querySelector("#artistName").value;
+      const genre = document.querySelector("#genreName").value;
 
-  //prewritten message if unable to find songs or no entry
-  const status = document.querySelector("#statusMessage");
-  status.textContent = "No Songs Found, Please Adjust Your Search";
-  status.style.display = "none";
+      //prewritten message if unable to find songs or no entry
+      const status = document.querySelector("#statusMessage");
+      status.textContent = "No Songs Found, Please Adjust Your Search";
+      status.style.display = "none";
 
-  let searchTable = [];
+      let searchTable = [];
 
-  if (title == "" && artist == "" && genre == "") {
-    status.style.display = "";
-    document.querySelector("#tableHead").style.display = "none";
-    return;
-  } else if (title !== "") {
-    searchTable = songList.filter((song) =>
-      song.title.toLowerCase().includes(title)
-    );
-  } else if (artist !== "") {
-    searchTable = songList.filter((song) => song.artist.name === artist);
-  } else if (genre !== "") {
-    searchTable = songList.filter((song) => song.genre.name === genre);
-  }
+      if (title == "" && artist == "" && genre == "") {
+        status.style.display = "";
+        document.querySelector("#tableHead").style.display = "none";
+        return;
+      } else if (title !== "") {
+        searchTable = songList.filter((song) =>
+          song.title.toLowerCase().includes(title)
+        );
+      } else if (artist !== "") {
+        searchTable = songList.filter((song) => song.artist.name === artist);
+      } else if (genre !== "") {
+        searchTable = songList.filter((song) => song.genre.name === genre);
+      }
 
-  if (searchTable.length === 0) {
-    status.style.display = "";
-    document.querySelector("#tableHead").style.display = "none";
-    return;
-  }
+      if (searchTable.length === 0) {
+        status.style.display = "";
+        document.querySelector("#tableHead").style.display = "none";
+        return;
+      }
 
-  status.style.display = "none";
+      status.style.display = "none";
 
-  showSearchTable(searchTable);
-  //reset table after submit
-  document.querySelector("#searchForm").reset();
-  disableInput();
-  console.log(searchTable);
+      showSearchTable(searchTable);
+      //reset table after submit
+      document.querySelector("#searchForm").reset();
+      disableInput();
+      console.log(searchTable);
+    }
+  );
 }

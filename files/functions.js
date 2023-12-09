@@ -1,20 +1,15 @@
-//disable input for the page until a radio box is selected
-document.addEventListener("DOMContentLoaded", function () {
-  disableInput();
-
-  //prevent submit button from refreshing the page and messing up the table
-  const buttonBehavior = document.querySelector("#searchForm");
-  buttonBehavior.addEventListener("submit", function (e) {
-    e.preventDefault();
-  });
-});
-
-//bring music data over from API into storage and prepare it for website usage
-let songsFromAPI = getMusicData();
-let musicTable = songsFromAPI;
-
-//function to remove data from music table and set search table to be shown isntead
+//function to remove data from music table and set search table to be shown instead
 function showSearchTable(searchTable) {
+  const musicTable = JSON.parse(localStorage.getItem("musicData"));
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   displaySongs(searchTable);
 }
@@ -22,14 +17,12 @@ function showSearchTable(searchTable) {
 //reset the musicTable once reset button has been used
 function resetMusicTable(reset) {
   if (reset === true) {
-    musicTable = getMusicData();
-    //clear any previous messages in DIV .eight
+     //clear any previous messages in DIV .eight
     document.querySelector("#statusMessage").textContent = "";
     //make the table visible from any previous searches
     document.querySelector("#statusMessage").style.display = "none";
     document.querySelector("#tableHead").style.display = "";
     blurOptions();
-    return musicTable;
   }
 }
 
