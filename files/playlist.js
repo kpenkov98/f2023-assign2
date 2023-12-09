@@ -1,6 +1,11 @@
 // for playlist related view
 let playlistArray = [];
 let fullTable = [];
+
+document.addEventListener("DOMContentLoaded", function () {
+  setErrorMessage();
+});
+
 //add to songIDs array
 function addToPlaylist(songid) {
   playlistArray.push(songid);
@@ -8,13 +13,11 @@ function addToPlaylist(songid) {
 }
 //find and clear song based on its ID
 function clearSong(songid) {
-  document.querySelector("#removeSong").addEventListener("click", function () {
-    //find songid
-    const index = playlistArray.indexOf(songid);
-    //remove songid
-    playlistArray.splice(index, 1);
-  });
-  //retrieveSongs();
+  //find songid
+  const index = playlistArray.indexOf(songid);
+  //remove songid
+  playlistArray.splice(index, 1);
+  retrieveSongs();
 }
 
 //clear the playlist completely
@@ -26,7 +29,7 @@ function clearPlaylist() {
         playlistArray.pop();
       }
     });
-  //retrieveSongs();
+  retrieveSongs();
 }
 
 function playlistSongList(listofsongs) {
@@ -35,6 +38,8 @@ function playlistSongList(listofsongs) {
 
 //compare and retrieve songs
 function retrieveSongs() {
+  setErrorMessage();
+
   const songArray = [];
 
   console.log(playlistArray.toString());
@@ -46,7 +51,21 @@ function retrieveSongs() {
     }
   });
 
+  setErrorMessage();
+
   displayPlaylist(songArray);
+}
+
+//clear table and set message that playlist is empty
+function setErrorMessage() {
+  const statusOfMessage = document.querySelector("#statusMessagePlaylist");
+  const statusOfTable = document.querySelector("#playlistTH");
+
+  if (playlistArray.length === 0) {
+    statusOfMessage.textContent = "No Songs Selected";
+    statusOfTable.style.display = "none";
+    return;
+  }
 }
 
 //show playlist, update playlist if array changes
@@ -100,6 +119,7 @@ function displayPlaylist(addedSongs) {
     addToFav.addEventListener("click", function () {
       clearSong(song.song_id);
       playSnackBar();
+      retrieveSongs();
     });
 
     row.appendChild(songId);
