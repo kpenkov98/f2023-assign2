@@ -69,6 +69,38 @@ function disableInput() {
   artistDisabledInput.style.pointerEvents = "none";
   genreDisabledInput.style.pointerEvents = "none";
 }
+//function to clear input from other fields if radio button has been used
+function clearSearchInput() {
+  const titleRadio = document.querySelector("#titleRadio");
+  const artistRadio = document.querySelector("#artistRadio");
+  const genreRadio = document.querySelector("#genreRadio");
+
+  const searchForm = document.querySelector("#searchForm");
+
+  const titleText = document.querySelector("#titleText");
+  const artistName = document.querySelector("#artistName");
+  const genreName = document.querySelector("#genreName");
+
+  searchForm.addEventListener("click", function () {
+    if (titleRadio.checked) {
+      artistName.selectedIndex = 0;
+      genreName.selectedIndex = 0;
+      return;
+    }
+
+    if (artistRadio.checked) {
+      titleText.value = "";
+      genreName.selectedIndex = 0;
+      return;
+    }
+
+    if (genreRadio.checked) {
+      titleText.value = "";
+      artistName.selectedIndex = 0;
+      return;
+    }
+  });
+}
 
 //function to blur and isolate other options when radio button is selected
 function blurOptions(clicked) {
@@ -116,7 +148,8 @@ function search(songList) {
   displaySongs(songList);
   let constantTable = songList.slice();
   let searchTable = [];
-  document.querySelector("#searchBox").addEventListener("click", function () {
+  const searchFunction = document.querySelector("#searchBox");
+  searchFunction.addEventListener("click", function () {
     let title = document.querySelector("#titleText").value.trim().toLowerCase();
     let artist = document.querySelector("#artistName").value;
     let genre = document.querySelector("#genreName").value;
@@ -140,15 +173,11 @@ function search(songList) {
     }
 
     if (artist !== "") {
-      searchTable = searchTable.filter(
-        (song) => song.artist.name === artist
-      );
+      searchTable = searchTable.filter((song) => song.artist.name === artist);
     }
 
     if (genre !== "") {
-      searchTable = searchTable.filter(
-        (song) => song.genre.name === genre
-      );
+      searchTable = searchTable.filter((song) => song.genre.name === genre);
     }
 
     if (searchTable.length === 0) {

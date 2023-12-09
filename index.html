@@ -80,7 +80,7 @@
               <input
                 type="radio"
                 name="searchRadio"
-                onclick="blurOptions('titleSearch');"
+                onclick="blurOptions('titleSearch'); clearSearchInput();"
                 id="titleRadio"
               />
               <input
@@ -98,7 +98,7 @@
               <input
                 type="radio"
                 name="searchRadio"
-                onclick="blurOptions('artistSearch');"
+                onclick="blurOptions('artistSearch'); clearSearchInput();"
                 id="artistRadio"
               />
               <select id="artistName" name="artist">
@@ -112,7 +112,7 @@
               <input
                 type="radio"
                 name="searchRadio"
-                onclick="blurOptions('genreSearch');"
+                onclick="blurOptions('genreSearch'); clearSearchInput();"
                 id="genreRadio"
               />
               <select id="genreName" name="genre">
@@ -138,18 +138,18 @@
           </form>
         </div>
         <!--Song Table-->
-        <div class="eight columns scroll">
+        <div class="eight columns u-full-width scroll">
           <h3 id="statusMessage"></h3>
           <table id="tableHead">
             <thead>
               <tr>
                 <th style="display: none">Song ID</th>
                 <th id="titleSort">Title</th>
-                <th id="artistSort" >Artist</th>
-                <th id="yearSort" >Year</th>
+                <th id="artistSort">Artist</th>
+                <th id="yearSort">Year</th>
                 <th id="genreSort">Genre</th>
-                <th id="popularitySort">Popularity</th>
-                <th>Add To Playlist</th>
+                <th id="popularitySort">Pop</th>
+                <th>Playlist</th>
               </tr>
             </thead>
             <tbody id="songTable"></tbody>
@@ -167,15 +167,16 @@
     <!-- View Playlist-->
     <div id="playlist" class="view row">
       <h1>Playlist</h1>
+      <input onclick="clearPlaylist();" type="button" class="button button-primary" value="Clear Playlist" id="clearPlaylist">
       <div class="twelve columns scroll">
         <h3 id="statusMessagePlaylist"></h3>
-        <table id="playlistTH">
+        <table id="playlistTH" align="center">
           <thead>
             <tr>
               <th style="display: none">Song ID</th>
               <th id="titleSort">Title</th>
-              <th id="artistSort" >Artist</th>
-              <th id="yearSort" >Year</th>
+              <th id="artistSort">Artist</th>
+              <th id="yearSort">Year</th>
               <th id="genreSort">Genre</th>
               <th id="popularitySort">Popularity</th>
               <th>Remove From Playlist</th>

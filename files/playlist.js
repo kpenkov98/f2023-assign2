@@ -1,5 +1,5 @@
 // for playlist related view
-let playlistArray = [];
+let playlistArray = new Set();
 let fullTable = [];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -8,27 +8,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //add to songIDs array
 function addToPlaylist(songid) {
-  playlistArray.push(songid);
+  if (playlistArray.has(songid)) {
+    playSnackBar(3);
+  }
+
+  playlistArray.add(songid);
   retrieveSongs();
 }
 //find and clear song based on its ID
 function clearSong(songid) {
-  //find songid
-  const index = playlistArray.indexOf(songid);
-  //remove songid
-  playlistArray.splice(index, 1);
+  //find and remove songID
+  playlistArray.delete(songid);
   retrieveSongs();
 }
 
 //clear the playlist completely
 function clearPlaylist() {
-  document
-    .querySelector("#clearPlaylist")
-    .addEventListener("click", function () {
-      while (playlistArray.length > 0) {
-        playlistArray.pop();
-      }
-    });
+  
+    console.log("clicked");
+    playlistArray.clear();
   retrieveSongs();
 }
 
@@ -41,8 +39,6 @@ function retrieveSongs() {
   setErrorMessage();
 
   const songArray = [];
-
-  console.log(playlistArray.toString());
   playlistArray.forEach((songId) => {
     const foundSong = fullTable.find((song) => song.song_id === songId);
 
@@ -52,7 +48,6 @@ function retrieveSongs() {
   });
 
   setErrorMessage();
-
   displayPlaylist(songArray);
 }
 
@@ -61,10 +56,13 @@ function setErrorMessage() {
   const statusOfMessage = document.querySelector("#statusMessagePlaylist");
   const statusOfTable = document.querySelector("#playlistTH");
 
-  if (playlistArray.length === 0) {
+  if (playlistArray.size === 0) {
+    statusOfMessage.style.display = "";
     statusOfMessage.textContent = "No Songs Selected";
     statusOfTable.style.display = "none";
-    return;
+  } else {
+    statusOfMessage.style.display = "none";
+    statusOfTable.style.display = "";
   }
 }
 
@@ -115,7 +113,7 @@ function displayPlaylist(addedSongs) {
 
     const addToFav = document.createElement("td");
     addToFav.textContent = "Remove";
-    addToFav.classList.add("button", "button-primary");
+    addToFav.classList.add("button", "button-primary", "buttonInTable");
     addToFav.addEventListener("click", function () {
       clearSong(song.song_id);
       playSnackBar();

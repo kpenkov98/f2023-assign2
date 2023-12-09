@@ -40,6 +40,13 @@
   100% { transform: rotate(360deg); }
 }
 
+/*Addition for button styling*/
+.buttonInTable {
+  text-align:  left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -474,6 +481,7 @@ td {
   text-align: left;
   vertical-align: center;
   border-bottom: 1px solid #e1e1e1;
+  width: 16%;
 }
 th:first-child,
 td:first-child {

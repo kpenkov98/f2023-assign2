@@ -24,13 +24,11 @@ function changeViews(viewId) {
 
 //diplay songs
 function displaySongs(musicTable) {
-
   const table = document.querySelector("#songTable");
   clearTable();
 
   //create table to show the songs
   musicTable.forEach((song) => {
-    
     const row = document.createElement("tr");
 
     const songId = document.createElement("td");
@@ -71,7 +69,7 @@ function displaySongs(musicTable) {
 
     const addToFav = document.createElement("td");
     addToFav.textContent = "Add";
-    addToFav.classList.add("button", "button-primary");
+    addToFav.classList.add("button", "button-primary", "buttonInTable");
     addToFav.addEventListener("click", function () {
       playSnackBar();
       addToPlaylist(song.song_id);
@@ -85,7 +83,6 @@ function displaySongs(musicTable) {
     row.appendChild(popularity);
     row.appendChild(addToFav);
     table.appendChild(row);
-    
   });
 }
 //clear the table before refilling it
