@@ -1,23 +1,7 @@
-//function to remove data from music table and set search table to be shown instead
-function showSearchTable(searchTable) {
-  const musicTable = JSON.parse(localStorage.getItem("musicData"));
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  displaySongs(searchTable);
-}
-
 //reset the musicTable once reset button has been used
 function resetMusicTable(reset) {
   if (reset === true) {
-     //clear any previous messages in DIV .eight
+    //clear any previous messages in DIV .eight
     document.querySelector("#statusMessage").textContent = "";
     //make the table visible from any previous searches
     document.querySelector("#statusMessage").style.display = "none";
@@ -40,11 +24,19 @@ function changeViews(viewId) {
 
 //diplay songs
 function displaySongs(musicTable) {
+  // document.querySelector("#clearSearch").addEventListener("click", function () {
+  //   const table = document.querySelector("#songTable");
+  //   while (table.rows.length > 0) {
+  //     table.deleteRow(0);
+  //   }
+  // });
+
   const table = document.querySelector("#songTable");
+  clearTable();
 
   //create table to show the songs
-
   musicTable.forEach((song) => {
+    
     const row = document.createElement("tr");
 
     const songId = document.createElement("td");
@@ -99,7 +91,15 @@ function displaySongs(musicTable) {
     row.appendChild(popularity);
     row.appendChild(addToFav);
     table.appendChild(row);
+    
   });
+}
+//clear the table before refilling it
+function clearTable() {
+  const table = document.querySelector("#songTable");
+  while (table.rows.length > 0) {
+    table.deleteRow(0);
+  }
 }
 
 function playSnackBar() {}

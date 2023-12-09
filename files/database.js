@@ -37,9 +37,38 @@ document.addEventListener("DOMContentLoaded", function () {
     //data already exists
     storedData = JSON.parse(localStorage.getItem("musicData"));
     //sort by title
-    const sortedData = storedData.sort((a, b) => {
+    let sortedData = storedData.sort((a, b) => {
       return a.title < b.title ? -1 : 1;
     });
+
+    document.querySelector("#titleSort").addEventListener("click", function() {
+      sortedData = storedData.sort((a, b) => {
+        return a.title < b.title ? -1 : 1;
+      });
+    });
+    document.querySelector("#artistSort").addEventListener("click", function() {
+      sortedData = storedData.sort((a, b) => {
+        return a.artist < b.artist ? -1 : 1;
+      });
+    });
+    document.querySelector("#yearSort").addEventListener("click", function() {
+      sortedData = storedData.sort((a, b) => {
+        return a.year < b.year ? -1 : 1;
+      });
+    });
+    document.querySelector("#genreSort").addEventListener("click", function() {
+      sortedData = storedData.sort((a, b) => {
+        return a.genre < b.genre ? -1 : 1;
+      });
+    });
+    document.querySelector("#popularitySort").addEventListener("click", function() {
+      sortedData = storedData.sort((a, b) => {
+        return a.popularity < b.popularity ? -1 : 1;
+      });
+    }
+    );
+
+
     return sortedData;
   }
   function fetchData() {
