@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //add to songIDs array
 function addToPlaylist(songid) {
+  console.log(songid);
   if (playlistArray.has(songid)) {
     playSnackBar(2);
   } else {

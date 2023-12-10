@@ -4,12 +4,6 @@ function songDetailsTable(apiSongs) {
 }
 //react to a song title being clicked and take to the song view
 function songTitleClick(e) {
-  //add song to playlist from the song details view
-  document
-    .querySelector("#addFromSongDetails")
-    .addEventListener("click", function () {
-      addToPlaylist(e.target.parentNode.dataset.song);
-    });
 
   //change views to see  the song details
   changeViews("song");
@@ -61,6 +55,15 @@ function songTitleClick(e) {
   const popularity = document.createElement("li");
   popularity.textContent = "Pop.: " + selectedSong.details.popularity;
 
+  //add song to playlist from the song details view
+  const addToPlaylistFromSongs =   document
+  .querySelector("#addFromSongDetails");
+  addToPlaylistFromSongs.removeEventListener("click", addToPlaylist);
+   addToPlaylistFromSongs.addEventListener("click", function () {
+
+      addToPlaylist(selectedSong.song_id);
+    });
+
   //radar for song infographics
   //taken from https://www.chartjs.org/docs/latest/charts/radar.html
   const radarData = {
@@ -70,7 +73,7 @@ function songTitleClick(e) {
       "Speechiness",
       "Acousticness",
       "Liveness",
-      "Valence",
+      "Valence"
     ],
     datasets: [
       {
@@ -117,6 +120,7 @@ function songTitleClick(e) {
   //return to search view and reset the list for next song detail.
   const resetButton = document.querySelector("#resetSongDetails");
   resetButton.addEventListener("click", function () {
+    radarChart.destroy();
     changeViews("search");
     while (list.hasChildNodes()) {
       list.removeChild(list.firstChild);

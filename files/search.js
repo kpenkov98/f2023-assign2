@@ -149,7 +149,11 @@ function search(songList) {
   let constantTable = songList.slice();
   let searchTable = [];
   const searchFunction = document.querySelector("#searchBox");
-  searchFunction.addEventListener("click", function () {
+  //reset event handler
+  searchFunction.removeEventListener("click", searchEventHandler);
+  searchFunction.addEventListener("click", searchEventHandler);
+  //passes the rest of the code into an event listener
+  function searchEventHandler() {
     let title = document.querySelector("#titleText").value.trim().toLowerCase();
     let artist = document.querySelector("#artistName").value;
     let genre = document.querySelector("#genreName").value;
@@ -194,7 +198,7 @@ function search(songList) {
     document.querySelector("#songTable").style.display = "";
     songList = searchTable;
     displaySongs(songList);
-  });
+  }
 
   document.querySelector("#clearSearch").addEventListener("click", function () {
     songList = constantTable;

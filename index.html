@@ -152,21 +152,24 @@
 
     <!-- View Song Details -->
     <div id="song" class="view row">
-      <h1>Song Details</h1>
-      <input
-        type="button"
-        class="button button-primary"
-        value="Add To Playlist"
-        id="addFromSongDetails"
-      />
+      <div class="row">
+        <h1>Song Details</h1>
+        <input
+          type="button"
+          class="button button-primary"
+          value="Add To Playlist"
+          id="addFromSongDetails"
+        />
+      </div>
+
       <div class="three columns" id="musicInfoPage">
         <ul id="musicInfoList"></ul>
       </div>
-      <div class="nine columns" >
-        <canvas id="radar"></canvas>
+      <div class="eight columns">
+        <canvas class="u-full-width" id="radar"></canvas>
       </div>
       <div id="snackbarSong"></div>
-      <div>
+      <div class="row">
         <input type="button" value="Go Back To Search" id="resetSongDetails" />
       </div>
     </div>
