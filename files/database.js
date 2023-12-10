@@ -41,10 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //data already exists
     storedData = JSON.parse(localStorage.getItem("musicData"));
     //sort by title
-    let sortedData = storedData.sort((a, b) => {
-      return a.title < b.title ? -1 : 1;
-    });
-    return sortedData;
+    // let sortedData = storedData.sort((a, b) => {
+    //   return a.title < b.title ? -1 : 1;
+    // });
+
+    return storedData;
   }
 
   function fetchData() {
@@ -67,4 +68,5 @@ document.addEventListener("DOMContentLoaded", function () {
   populateSelect(songsFromAPI);
   playlistSongList(songsFromAPI);
   songDetailsTable(songsFromAPI);
+  sortTable(1);
 });

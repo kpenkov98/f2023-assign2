@@ -36,19 +36,23 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*Addition for button styling*/
 .buttonInTable {
-  text-align:  left;
+  text-align: left;
   width: 100%;
   box-sizing: border-box;
 }
 
 /* Snackbar */
-/*Sorry Randy I pulled this entire thing from W3Schools. plz forgive :) */
+/*Used from*/
 /*https://www.w3schools.com/howto/howto_js_snackbar.asp*/
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbarSearch,
@@ -79,27 +83,63 @@
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+#titleSort,
+#artistSort,
+#yearSort,
+#genreSort,
+#popularitySort {
+  cursor: pointer;
+}
+.ascending::after {
+  content: " ↑";
+}
+.descending::after {
+  content: " ↓";
+}
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
-
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

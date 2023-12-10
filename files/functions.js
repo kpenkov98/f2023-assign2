@@ -135,23 +135,73 @@ function creditHover() {
   const creditButton = document.querySelector("#credits");
   const githubPages = document.querySelector("#author");
   const authorName = document.querySelector("#pages");
-  
+
   githubPages.style.display = "none";
   authorName.style.display = "none";
 
   creditButton.addEventListener("mouseover", () => {
-
     githubPages.style.display = "";
     authorName.style.display = "";
-    setTimeout(function() {
+    setTimeout(function () {
       githubPages.style.display = "none";
       authorName.style.display = "none";
     }, 5000);
-
   });
-
-
-
 }
 
-//sort columns of the table
+//sort the table with row switching
+//ideas and thoughts from https://www.geeksforgeeks.org/how-to-sort-rows-in-a-table-using-javascript/
+
+let ascending = true;
+const titleSort = document.querySelector("#titleSort");
+const artistSort = document.querySelector("#artistSort");
+const yearSort = document.querySelector("#yearSort");
+const genreSort = document.querySelector("#genreSort");
+const popularitySort = document.querySelector("#popularitySort");
+function sortTable(columnIndex) {
+
+  document.querySelectorAll("th").forEach(header => {
+    header.classList.remove("ascending", "descending");
+  });
+
+  let table, rows, switching, i, x, y, shouldSwitch;
+  table = document.querySelector("#tableHead");
+  switching = true;
+
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].querySelectorAll("td")[columnIndex];
+      y = rows[i + 1].querySelectorAll("td")[columnIndex];
+
+      let xValue, yValue;
+
+      if (isNaN(x.innerHTML)) {
+        xValue = x.innerHTML.toLowerCase();
+        yValue = y.innerHTML.toLowerCase();
+      } else {
+        xValue = parseInt(x.innerHTML);
+        yValue = parseInt(y.innerHTML);
+      }
+
+      if (ascending) {
+        shouldSwitch = xValue > yValue;
+      } else {
+        shouldSwitch = xValue < yValue;
+      }
+
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+  ascending = !ascending;
+
+  const currentHeader = document.querySelector(`#tableHead th:nth-child(${columnIndex + 1})`);
+  currentHeader.classList.toggle("ascending", ascending);
+  currentHeader.classList.toggle("descending", !ascending);
+}
