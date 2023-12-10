@@ -4,7 +4,6 @@ function songDetailsTable(apiSongs) {
 }
 //react to a song title being clicked and take to the song view
 function songTitleClick(e) {
-
   //change views to see  the song details
   changeViews("song");
 
@@ -13,6 +12,10 @@ function songTitleClick(e) {
   const selectedSong = musicTable.find(
     (musicTable) => musicTable.song_id == id
   );
+
+  //convert seconds to minutes and seconds
+  const minutes = Math.floor(selectedSong.details.duration / 60);
+  const seconds = selectedSong.details.duration % 60;
 
   list = document.querySelector("#musicInfoList");
 
@@ -29,7 +32,7 @@ function songTitleClick(e) {
   year.textContent = "Year: " + selectedSong.year;
 
   const duration = document.createElement("li");
-  duration.textContent = "Duration: " + selectedSong.details.duration;
+  duration.textContent = "Duration: " + minutes + "m:" + seconds + "s";
 
   const bpm = document.createElement("li");
   bpm.textContent = "BPM: " + selectedSong.details.bpm;
@@ -56,13 +59,11 @@ function songTitleClick(e) {
   popularity.textContent = "Pop.: " + selectedSong.details.popularity;
 
   //add song to playlist from the song details view
-  const addToPlaylistFromSongs =   document
-  .querySelector("#addFromSongDetails");
+  const addToPlaylistFromSongs = document.querySelector("#addFromSongDetails");
   addToPlaylistFromSongs.removeEventListener("click", addToPlaylist);
-   addToPlaylistFromSongs.addEventListener("click", function () {
-
-      addToPlaylist(selectedSong.song_id);
-    });
+  addToPlaylistFromSongs.addEventListener("click", function () {
+    addToPlaylist(selectedSong.song_id);
+  });
 
   //radar for song infographics
   //taken from https://www.chartjs.org/docs/latest/charts/radar.html
@@ -73,7 +74,7 @@ function songTitleClick(e) {
       "Speechiness",
       "Acousticness",
       "Liveness",
-      "Valence"
+      "Valence",
     ],
     datasets: [
       {
@@ -100,7 +101,7 @@ function songTitleClick(e) {
   const radarChartCanvas = document.querySelector("#radar").getContext("2d"); // Use getElementById instead of querySelector
   const radarChart = new Chart(radarChartCanvas, {
     type: "radar",
-    data: radarData
+    data: radarData,
   });
 
   list.appendChild(title);
