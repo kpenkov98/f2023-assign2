@@ -1,5 +1,9 @@
 //disable input for the page until a radio box is selected
 document.addEventListener("DOMContentLoaded", function () {
+  
+  //credits hover link
+  creditHover();
+  
   const api =
     "https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php";
 
@@ -40,37 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let sortedData = storedData.sort((a, b) => {
       return a.title < b.title ? -1 : 1;
     });
-
-    document.querySelector("#titleSort").addEventListener("click", function () {
-      sortedData = storedData.sort((a, b) => {
-        return a.title < b.title ? -1 : 1;
-      });
-    });
-    document
-      .querySelector("#artistSort")
-      .addEventListener("click", function () {
-        sortedData = storedData.sort((a, b) => {
-          return a.artist < b.artist ? -1 : 1;
-        });
-      });
-    document.querySelector("#yearSort").addEventListener("click", function () {
-      sortedData = storedData.sort((a, b) => {
-        return a.year < b.year ? -1 : 1;
-      });
-    });
-    document.querySelector("#genreSort").addEventListener("click", function () {
-      sortedData = storedData.sort((a, b) => {
-        return a.genre < b.genre ? -1 : 1;
-      });
-    });
-    document
-      .querySelector("#popularitySort")
-      .addEventListener("click", function () {
-        sortedData = storedData.sort((a, b) => {
-          return a.popularity < b.popularity ? -1 : 1;
-        });
-      });
-
     return sortedData;
   }
 

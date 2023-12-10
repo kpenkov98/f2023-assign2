@@ -28,14 +28,20 @@
 
   <body class="container">
     <header class="row">
-      <h2 align="center">COMP3512 Kirill Penkov</h2>
-      <a class="button" href="https://github.com/kpenkov98/f2023-assign2.git"
-        >GitHub Repo</a
-      >
-      <br />
-      <a class="button" href="https://kpenkov98.github.io/f2023-assign2/"
-        >GitHub Pages</a
-      >
+      <h2 align="center">COMP3512 - Assignment 2</h2>
+      <!--Credit Hover Button-->
+      <a class="button button-primary" id="credits">Credits</a>
+      <div>
+        <a id="author" href="#" class="button">Kirill Penkov</a>
+      </div>
+      <div>
+        <a
+          id="pages"
+          href="https://github.com/kpenkov98/f2023-assign2"
+          class="button"
+          >Github Repo</a
+        >
+      </div>
     </header>
 
     <!-- Nav Bar removed just for styling at this point-->
@@ -177,6 +183,7 @@
     <!-- View Playlist-->
     <div id="playlist" class="view row">
       <h1>Playlist</h1>
+      <h5 id="amountOfSongs"></h5>
       <input
         onclick="clearPlaylist();"
         type="button"

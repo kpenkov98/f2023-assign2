@@ -53,7 +53,6 @@ function displaySongs(musicTable) {
     row.dataset.song = song.song_id;
     title.addEventListener("click", (e) => {
       songTitleClick(e, song, musicTable);
-      
     });
 
     const artist = document.createElement("td");
@@ -130,3 +129,29 @@ function playSnackBar(snackBarID) {
     }, 2950);
   }
 }
+
+//hoverable credits using mouseover method
+function creditHover() {
+  const creditButton = document.querySelector("#credits");
+  const githubPages = document.querySelector("#author");
+  const authorName = document.querySelector("#pages");
+  
+  githubPages.style.display = "none";
+  authorName.style.display = "none";
+
+  creditButton.addEventListener("mouseover", () => {
+
+    githubPages.style.display = "";
+    authorName.style.display = "";
+    setTimeout(function() {
+      githubPages.style.display = "none";
+      authorName.style.display = "none";
+    }, 5000);
+
+  });
+
+
+
+}
+
+//sort columns of the table

@@ -4,6 +4,7 @@ let fullTable = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   setErrorMessage();
+  retrieveSongs();
 });
 
 //add to songIDs array
@@ -16,7 +17,6 @@ function addToPlaylist(songid) {
     playlistArray.add(songid);
     retrieveSongs();
   }
-
 }
 //find and clear song based on its ID
 function clearSong(songid) {
@@ -39,6 +39,10 @@ function playlistSongList(listofsongs) {
 
 //compare and retrieve songs
 function retrieveSongs() {
+  //total songs in the playlist momentarily
+  const addTotalSongs = document.querySelector("#amountOfSongs");
+  addTotalSongs.textContent = "Songs In Your Playlist " + playlistArray.size;
+
   setErrorMessage();
 
   const songArray = [];
