@@ -93,4 +93,5 @@ document.addEventListener("DOMContentLoaded", function () {
   search(songsFromAPI);
   populateSelect(songsFromAPI);
   playlistSongList(songsFromAPI);
+  songDetailsTable(songsFromAPI);
 });

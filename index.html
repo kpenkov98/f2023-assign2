@@ -37,28 +37,10 @@
       >
     </header>
 
-    <script>
-      //bring music data over from API into storage and prepare it for website usage
-    </script>
-
-    <!-- Nav Bar with View Selection -->
+    <!-- Nav Bar removed just for styling at this point-->
     <nav class="navbar row">
       <ul class="navbar-list">
-        <li class="navbar-item">
-          <a class="navbar-link" onclick="changeViews('search')" href="#"
-            >Search & Browse</a
-          >
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" onclick="changeViews('song')" href="#"
-            >Song Details</a
-          >
-        </li>
-        <li class="navbar-item">
-          <a class="navbar-link" onclick="changeViews('playlist')" href="#"
-            >Playlist</a
-          >
-        </li>
+        <li class="navbar-item"></li>
       </ul>
     </nav>
 
@@ -157,13 +139,33 @@
         </div>
       </div>
       <div id="snackbarSearch"></div>
+      <div>
+        <input
+          type="button"
+          class="button button-primary"
+          value="Go to PlayList"
+          onclick="changeViews('playlist');"
+        />
+      </div>
     </div>
 
     <!-- View Song Details -->
     <div id="song" class="view row">
       <h1>Song Details</h1>
-      <ul></ul>
+      <input
+        type="button"
+        class="button button-primary"
+        value="Add To Playlist"
+        id="addFromSongDetails"
+      />
+      <div class="three columns" id="musicInfoPage">
+        <ul id="musicInfoList"></ul>
+      </div>
+      <div class="nine columns" id="radar"></div>
       <div id="snackbarSong"></div>
+      <div>
+        <input type="button" value="Go Back To Search" id="resetSongDetails" />
+      </div>
     </div>
 
     <!-- View Playlist-->
@@ -194,8 +196,21 @@
         </table>
         <div id="snackbarPlaylist"></div>
       </div>
+      <div>
+        <input
+          type="button"
+          class="button button-primary"
+          value="Go to Search & Browse"
+          onclick="changeViews('search');"
+        />
+      </div>
     </div>
-
+    <!--Nav Bar for styling, no purpose otherwise-->
+    <nav class="navbar row">
+      <ul class="navbar-list">
+        <li class="navbar-item"></li>
+      </ul>
+    </nav>
     <footer>
       <h5>COMP3512 Assignment 2</h5>
       <h5>&copy Kirill Penkov</h5>

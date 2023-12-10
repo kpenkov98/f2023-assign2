@@ -53,6 +53,7 @@ function displaySongs(musicTable) {
     row.dataset.song = song.song_id;
     title.addEventListener("click", (e) => {
       songTitleClick(e, song, musicTable);
+      
     });
 
     const artist = document.createElement("td");
