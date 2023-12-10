@@ -1,17 +1,16 @@
 //this file is for code related to Song Details
-function songDetailsTable(data) {
-  musicTable = data;
+function songDetailsTable(apiSongs) {
+  musicTable = apiSongs;
 }
 //react to a song title being clicked and take to the song view
 function songTitleClick(e) {
-  
   //add song to playlist from the song details view
   document
     .querySelector("#addFromSongDetails")
     .addEventListener("click", function () {
       addToPlaylist(e.target.parentNode.dataset.song);
-      console.log(e.target.parentNode.dataset.song);
     });
+
   //change views to see  the song details
   changeViews("song");
 
@@ -62,6 +61,45 @@ function songTitleClick(e) {
   const popularity = document.createElement("li");
   popularity.textContent = "Pop.: " + selectedSong.details.popularity;
 
+  //radar for song infographics
+  //taken from https://www.chartjs.org/docs/latest/charts/radar.html
+  const radarData = {
+    labels: [
+      "Danceability",
+      "Energy",
+      "Speechiness",
+      "Acousticness",
+      "Liveness",
+      "Valence",
+    ],
+    datasets: [
+      {
+        label: selectedSong.title + " By " + selectedSong.artist.name,
+        data: [
+          selectedSong.analytics.danceability,
+          selectedSong.analytics.energy,
+          selectedSong.analytics.speechiness,
+          selectedSong.analytics.acousticness,
+          selectedSong.analytics.liveness,
+          selectedSong.analytics.valence,
+        ],
+        fill: true,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgb(255, 99, 132)",
+        pointBackgroundColor: "rgb(255, 99, 132)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(255, 99, 132)",
+      },
+    ],
+  };
+
+  const radarChartCanvas = document.querySelector("#radar").getContext("2d"); // Use getElementById instead of querySelector
+  const radarChart = new Chart(radarChartCanvas, {
+    type: "radar",
+    data: radarData
+  });
+
   list.appendChild(title);
   list.appendChild(artist);
   list.appendChild(genre);
@@ -79,11 +117,9 @@ function songTitleClick(e) {
   //return to search view and reset the list for next song detail.
   const resetButton = document.querySelector("#resetSongDetails");
   resetButton.addEventListener("click", function () {
-      changeViews("search");
-      while (list.hasChildNodes()) {
-        list.removeChild(list.firstChild);
-      }
-
-   });
-
+    changeViews("search");
+    while (list.hasChildNodes()) {
+      list.removeChild(list.firstChild);
+    }
+  });
 }

@@ -6,9 +6,10 @@
   <script src="./files/playlist.js"></script>
   <script src="./files/search.js"></script>
   <script src="./files/song.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <header>
     <meta charset="utf-8" />
-    <title>Home Page</title>
+    <title>Assignment 2</title>
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,7 +162,9 @@
       <div class="three columns" id="musicInfoPage">
         <ul id="musicInfoList"></ul>
       </div>
-      <div class="nine columns" id="radar"></div>
+      <div class="nine columns" >
+        <canvas id="radar"></canvas>
+      </div>
       <div id="snackbarSong"></div>
       <div>
         <input type="button" value="Go Back To Search" id="resetSongDetails" />
